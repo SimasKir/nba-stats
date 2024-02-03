@@ -1,0 +1,44 @@
+$font-size-nano: 10px;
+$font-size-micro: 12px;
+$font-size-small: 14px;
+$font-size-base: 16px;
+$font-size-big: 24px;
+$font-size-lead: 60px;
+
+.nano {
+    letter-spacing: inherit;
+    font-size: $font-size-nano;
+}
+
+.micro {
+    letter-spacing: inherit;
+    font-size: $font-size-micro;
+}
+
+.small {
+    letter-spacing: inherit;
+    font-size: $font-size-small;
+}
+
+.base {
+    letter-spacing: inherit;
+    font-size: $font-size-base;
+}
+
+.big {
+    letter-spacing: inherit;
+    font-size: $font-size-big;
+}
+
+.lead {
+    letter-spacing: inherit;
+    font-size: $font-size-lead;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.custom-font-size {
+    font-size: 30px;
+}

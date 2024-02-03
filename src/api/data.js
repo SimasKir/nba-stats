@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const API_URL = 'https://www.balldontlie.io/api/v1/players';
+const API_URL = "https://www.balldontlie.io/api/v1/players";
 
 const mvpPlayers = [
   {
-    name: 'Joel',
-    lastName: 'Embiid',
-    id: '145',
+    name: "Joel",
+    lastName: "Embiid",
+    id: "145",
   },
   {
-    name: 'Nicola',
-    lastName: 'Jokic',
-    id: '246',
+    name: "Nicola",
+    lastName: "Jokic",
+    id: "246",
   },
   {
-    name: 'Shai',
-    lastName: 'Gilgeous-Alexander',
-    id: '175',
+    name: "Shai",
+    lastName: "Gilgeous-Alexander",
+    id: "175",
   },
   {
-    name: 'Giannis',
-    lastName: 'Antetokounmpo',
-    id: '15',
+    name: "Giannis",
+    lastName: "Antetokounmpo",
+    id: "15",
   },
+  // {
+  //   name: "Luca",
+  //   lastName: "Doncic",
+  //   id: "132",
+  // },
   {
-    name: 'Luca',
-    lastName: 'Doncic',
-    id: '132',
+    name: "Jason",
+    lastName: "Tatum",
+    id: "434",
   },
 ];
 
@@ -40,12 +45,12 @@ export default function Data() {
           mvpPlayers.map(async (player) => {
             const response = await fetch(`${API_URL}/${player.id}`);
             return response.json();
-          })
+          }),
         );
 
         setPlayers(responses);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 

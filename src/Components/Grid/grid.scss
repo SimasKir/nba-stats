@@ -1,0 +1,9 @@
+
+
+.grid-align {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+    @include responsive-breakpoints($breakpoint-small);
+}
