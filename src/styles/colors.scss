@@ -1,11 +1,15 @@
 .bg-primary {
-    background-color: #0C2D57;
+    background-color: $color-primary;
 }
 
 .font-light {
-    color: #fff;
+    color: $color-white;
 }
 
 .font-border {
-    text-shadow: -3px 0 #0C2D57, 0 3px #0C2D57, 3px 0 #0C2D57, 0 -3px #0C2D57;;
+    text-shadow: -3px 0 $color-primary, 0 3px $color-primary, 3px 0 $color-primary, 0 -3px $color-primary;;
 }
+
+.svg-light {
+    fill: $color-white;
+  }

@@ -6,25 +6,22 @@ import Image from "../Image/Image";
 import Stats from "../../api/statsData";
 import Data from "../../api/data";
 import Compare from "../Comparison/Compare";
+import { store } from "../../redux/store";
+import { set } from "../../redux/actions";
 
-const Grid = ({ children, className, ...props }) => {
+const Grid = ({ className, ...props }) => {
   const classes = cx("container grid-align", className);
-  const { players } = Data();
-  const { stats } = Stats();
-
-  console.log(players);
-  console.log(stats);
 
   const [compareOpen, setCompareOpen] = useState(false);
 
-  let modifiedStatsArray = [];
-  stats.forEach((stat) => {
-    modifiedStatsArray.push(stat.data[0]);
-  });
+  const { players } = Data();
+  const { stats } = Stats();
+
+  store.dispatch(set({ players: players, stats: stats }));
+
+  console.log(store.getState());
 
   const [openIndex, setOpenIndex] = useState(null);
-
-  console.log(openIndex);
 
   const handleToggle = (id) => {
     setOpenIndex(openIndex === id ? null : id);
@@ -40,10 +37,11 @@ const Grid = ({ children, className, ...props }) => {
       {compareOpen ? (
         <Compare
           className="bg-primary"
-          items={modifiedStatsArray}
+          // items={stats}
           setOpenIndex={setOpenIndex}
+          openIndex={openIndex}
           handleToggle={handleToggle}
-          names={players}
+          // names={players}
           handleCompare={handleCompare}
         />
       ) : (
@@ -52,8 +50,8 @@ const Grid = ({ children, className, ...props }) => {
           handleToggle={handleToggle}
           setOpenIndex={setOpenIndex}
           openIndex={openIndex}
-          items={modifiedStatsArray}
-          names={players}
+          // items={stats}
+          // names={players}
           handleCompare={handleCompare}
         />
       )}
@@ -62,12 +60,11 @@ const Grid = ({ children, className, ...props }) => {
 };
 
 Grid.propTypes = {
-  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 Grid.defaultProps = {
-  fluid: false,
+  "section-name": "Grid",
 };
 
 export default Grid;

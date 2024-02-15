@@ -7,7 +7,6 @@ import logo from "../../assets/SVG-nba-logo.svg";
 import Button from "../Button/Button";
 
 const Content = ({
-  children,
   className,
   handleToggle,
   handleCompare,
@@ -17,7 +16,7 @@ const Content = ({
   names,
   ...props
 }) => {
-  const classes = cx("Content column-width-60", className);
+  const classes = cx("Content column-width-md-60", className);
 
   const handleCompareAndSetID = () => {
     handleCompare();
@@ -27,7 +26,7 @@ const Content = ({
   return (
     <div className={classes} {...props}>
       <Title
-        className="bebas-neue-regular lead underline font-light flex-row"
+        className="bebas-neue-regular lead underline font-light flex flex-direction-row align-center"
         tagStyle="h1"
       >
         <img height="50px" className="mr-12" src={logo} alt="nba logo" />
@@ -47,12 +46,11 @@ const Content = ({
 };
 
 Content.propTypes = {
-  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 Content.defaultProps = {
-  fluid: false,
+  "section-name": "Content",
 };
 
 export default Content;

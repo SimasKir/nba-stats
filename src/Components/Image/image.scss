@@ -1,3 +1,10 @@
+.Image-container {
+  display: none;
+  @include responsive-breakpoints($breakpoint-medium) {
+    display: flex;
+  };
+}
+
 .column-width-40 {
     width: 40%;
   }
@@ -13,4 +20,18 @@
 
   .image-rotated {
     transform: rotate(180deg);
+  }
+
+  .grayscale {
+    filter: grayscale(1);
+  }
+
+  .overlay {
+    opacity: 0.7;
+    background-color: #0C2D57;
+  }
+
+  .image-mid {
+    justify-content: center;
+    object-fit: cover;
   }

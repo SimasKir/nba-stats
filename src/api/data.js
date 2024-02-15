@@ -1,39 +1,7 @@
-import React, { useState, useEffect } from "react";
-
-const API_URL = "https://www.balldontlie.io/api/v1/players";
-
-const mvpPlayers = [
-  {
-    name: "Joel",
-    lastName: "Embiid",
-    id: "145",
-  },
-  {
-    name: "Nicola",
-    lastName: "Jokic",
-    id: "246",
-  },
-  {
-    name: "Shai",
-    lastName: "Gilgeous-Alexander",
-    id: "175",
-  },
-  {
-    name: "Giannis",
-    lastName: "Antetokounmpo",
-    id: "15",
-  },
-  // {
-  //   name: "Luca",
-  //   lastName: "Doncic",
-  //   id: "132",
-  // },
-  {
-    name: "Jason",
-    lastName: "Tatum",
-    id: "434",
-  },
-];
+import { useState, useEffect } from "react";
+import PLAYERS from "../constants/players-info";
+import { store } from "../redux/store";
+import { set } from "../redux/actions";
 
 export default function Data() {
   const [players, setPlayers] = useState([]);
@@ -42,8 +10,10 @@ export default function Data() {
     const fetchPlayers = async () => {
       try {
         const responses = await Promise.all(
-          mvpPlayers.map(async (player) => {
-            const response = await fetch(`${API_URL}/${player.id}`);
+          PLAYERS.map(async (player) => {
+            const response = await fetch(
+              `https://www.balldontlie.io/api/v1/players/${player.id}`,
+            );
             return response.json();
           }),
         );
@@ -53,7 +23,7 @@ export default function Data() {
         console.error("Error fetching data:", error);
       }
     };
-
+    store.dispatch(set());
     fetchPlayers();
   }, []);
 
