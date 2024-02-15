@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
-.column-width-60 {
-  width: 60%;
+.column-width-md-60 {
+  width: 100%;
+
+  @include responsive-breakpoints($breakpoint-medium) {
+    width: 60%;
+  }
 }

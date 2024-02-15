@@ -1,13 +1,16 @@
 import React from "react";
 import AccordionItem from "./Accordion";
+import { store } from "../../redux/store";
 
-const Accordion = ({ items, names, handleToggle, openIndex }) => {
+const Accordion = ({ handleToggle, openIndex }) => {
+  const playersData = store.getState().data.players;
+  const statsData = store.getState().data.stats;
   return (
     <div>
-      {names.map((name, index) => (
+      {playersData.map((name, index) => (
         <AccordionItem
           key={index}
-          item={items[index]}
+          stat={statsData[index]}
           name={name}
           index={index}
           isOpen={openIndex === name.id}

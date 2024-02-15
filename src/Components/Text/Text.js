@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 const TEXT_TAGS = ["p", "span", "div"];
-const TEXT_SIZES = ["lead", "big", "small", "base", "micro", "nano"];
+const TEXT_SIZES = ["lead", "big", "small", "base"];
 
 const Text = ({ text, tag, tagStyle, children, className }) => {
   const TextTag = TEXT_TAGS.includes(tag) ? tag : "p";

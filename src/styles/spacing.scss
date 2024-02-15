@@ -14,6 +14,10 @@
     padding-left: 12px;
 }
 
+.pt-6 {
+    padding-top: 6px;
+}
+
 .m-0 {
     margin: 0;
 }
@@ -22,6 +26,13 @@
     margin: 0 12px;
 }
 
+.mx-md-y-x {
+    margin: 12px 0;
+
+    @include responsive-breakpoints($breakpoint-medium) {
+        margin: 0 12px;
+      };
+}
 .mb-12 {
     margin-bottom: 12px;
 }
@@ -48,9 +59,14 @@
 }
 
 .px-12 {
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .mt-negative-20 {
     margin-top: -20px;
+}
+
+.mx-auto {
+    margin: 0 auto;
 }

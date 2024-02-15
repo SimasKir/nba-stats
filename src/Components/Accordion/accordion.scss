@@ -1,0 +1,35 @@
+.AccordionItem {
+    width: 350px;
+
+    @include responsive-breakpoints($breakpoint-small) {
+        width: 560px;
+    }
+
+    @include responsive-breakpoints($breakpoint-large) {
+        width: 620px;
+    };
+
+    & .lead {
+        font-size: $font-size-base;
+
+        @include responsive-breakpoints($breakpoint-small) {
+            font-size: $font-size-big;
+        };
+        
+        @include responsive-breakpoints($breakpoint-large) {
+            font-size: $font-size-lead;
+        };
+    }
+
+    & .custom-margin {
+        margin-top: 24px;
+
+        @include responsive-breakpoints($breakpoint-small) {
+            margin-top: 10px;
+        }
+    
+        @include responsive-breakpoints($breakpoint-large) {
+            margin-top: 0px;
+        };
+    }
+}
