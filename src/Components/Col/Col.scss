@@ -1,0 +1,23 @@
+.col-40 {
+    width: 0%;
+  
+    @include responsive-breakpoints($breakpoint-medium) {
+      width: 40%;
+    }
+}
+
+.col-100 {
+    width: 100%;
+}
+
+.col-60 {
+    width: 100%;
+  
+    @include responsive-breakpoints($breakpoint-medium) {
+      width: 60%;
+    }
+  }
+
+  .col-0 {
+    width: 0;
+  }

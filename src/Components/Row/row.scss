@@ -1,0 +1,30 @@
+.row {
+    &__flex {
+        display: flex;
+
+        &::before,
+        &::after {
+            content: normal;
+        }
+    }
+
+    &--justify-around {
+        justify-content: space-around;
+    }
+
+    &--justify-between {
+        justify-content: space-between;
+    }
+
+    &--justify-start {
+        justify-content: flex-start;
+    }
+
+    &--justify-center {
+        justify-content: center;
+    }
+
+    &--justify-end {
+        justify-content: flex-end;
+    }
+}

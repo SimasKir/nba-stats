@@ -1,6 +1,7 @@
 import React from "react";
 import Text from "../Text/Text";
 import downArrow from "../../assets/down-arrow.svg";
+import Stats from "../Stats/Stats";
 
 const AccordionItem = ({ stat, name, isOpen, onToggle, index }) => {
   return (
@@ -36,40 +37,7 @@ const AccordionItem = ({ stat, name, isOpen, onToggle, index }) => {
           alt="down-arrow"
         />
       </div>
-      {isOpen && (
-        <div className="p-10 flex flex-direction-column-row justify-content-center align-left-center border-bottom w-fit-content mx-auto">
-          <div className="flex flex-direction-row justify-content-center align-left-center px-12 pt-6">
-            <Text
-              className="flex align-center base bebas-neue-regular font-light mr-12"
-              text={"Points:"}
-            />
-            <Text
-              className="base grape-nuts-regular font-light custom-font-size"
-              text={stat.pts}
-            />
-          </div>
-          <div className="flex flex-direction-row justify-content-center align-left-center px-12 pt-6 border-y-x">
-            <Text
-              className="flex align-center base bebas-neue-regular font-light mr-12"
-              text={"Assists:"}
-            />
-            <Text
-              className="base grape-nuts-regular font-light custom-font-size"
-              text={stat.ast}
-            />
-          </div>
-          <div className="flex flex-direction-row justify-content-center align-left-center px-12 pt-6">
-            <Text
-              className="flex align-center base bebas-neue-regular font-light mr-12"
-              text={"Rebounds:"}
-            />
-            <Text
-              className="base grape-nuts-regular font-light custom-font-size"
-              text={stat.reb}
-            />
-          </div>
-        </div>
-      )}
+      {isOpen && <Stats stats={stat} />}
     </div>
   );
 };

@@ -8,14 +8,12 @@ import { store } from "../../redux/store";
 const Compare = ({
   className,
   handleToggle,
-  handleCompare,
+  contentSwitch,
   openIndex,
   setOpenIndex,
-  items,
-  names,
   ...props
 }) => {
-  const classes = cx("Content column-width-md-60", className);
+  const classes = cx("Content h-100", className);
 
   const playersData = store.getState().data.players;
 
@@ -24,20 +22,26 @@ const Compare = ({
     return `${player.first_name} ${player.last_name}`;
   };
 
+  const compareSwitchToContent = () => {
+    contentSwitch(0);
+  };
+  const compareSwitchToSearch = () => {
+    contentSwitch(2);
+  };
+
   return (
-    <div
-      className={classes}
-      style={{ display: "flex", flexDirection: "column" }}
-      {...props}
-    >
+    <div className={cx("flex-column", classes)} {...props}>
       <PillNavigation
         setOpenIndex={setOpenIndex}
         openIndex={openIndex}
         handleToggle={handleToggle}
         findPlayerById={findPlayerById}
       />
-      <Button handleCompare={handleCompare} className="mt-24">
+      <Button contentSwitch={compareSwitchToContent} className="mt-24">
         Back to Race
+      </Button>
+      <Button contentSwitch={compareSwitchToSearch} className="mt-24">
+        Search for player
       </Button>
     </div>
   );
@@ -45,6 +49,10 @@ const Compare = ({
 
 Compare.propTypes = {
   className: PropTypes.string,
+  handleToggle: PropTypes.func,
+  contentSwitch: PropTypes.func,
+  openIndex: PropTypes.number,
+  setOpenIndex: PropTypes.func,
 };
 
 Compare.defaultProps = {

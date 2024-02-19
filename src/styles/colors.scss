@@ -6,6 +6,10 @@
     color: $color-white;
 }
 
+.font-highlight {
+    color: $color-highlight;
+}
+
 .font-border {
     text-shadow: -3px 0 $color-primary, 0 3px $color-primary, 3px 0 $color-primary, 0 -3px $color-primary;;
 }

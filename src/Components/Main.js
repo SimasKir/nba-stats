@@ -1,19 +1,76 @@
-import React from "react";
-import PropTypes from "prop-types";
-// import cx from 'classnames';
+import React, { useState } from "react";
+import Page from "../Components/Page/Page";
+import Section from "../Components/Section/Section";
+import Row from "../Components/Row/Row";
+import Col from "../Components/Col/Col";
+import { store } from "../redux/store";
 
-const Main = ({ children, className, ...props }) => {
+import Content from "./Content/Content";
+import Search from "./Search/Search";
+import Image from "./Image/Image";
+import Stats from "../api/statsData";
+import Data from "../api/data";
+import Compare from "./Comparison/Compare";
+import { set } from "../redux/actions";
+
+const Main = () => {
+  const [contentIndex, setContentIndex] = useState(0);
+
+  const { players } = Data();
+  const { stats } = Stats();
+
+  store.dispatch(set({ players: players, stats: stats, newPlayer: null }));
+
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleToggle = (id) => {
+    setOpenIndex(openIndex === id ? null : id);
+  };
+
+  const contentSwitch = (index) => {
+    setContentIndex(index);
+  };
+
   return (
-    <main className={className} {...props}>
-      {children}
-    </main>
+    <Page>
+      <Section className="vh-100">
+        <Row flex>
+          <Col width={contentIndex === 2 ? 0 : 40}>
+            <Image openIndex={openIndex} />
+          </Col>
+          <Col width={contentIndex === 2 ? 100 : 60}>
+            {contentIndex === 0 && (
+              <Content
+                className="bg-primary"
+                handleToggle={handleToggle}
+                setOpenIndex={setOpenIndex}
+                openIndex={openIndex}
+                contentSwitch={contentSwitch}
+              />
+            )}
+            {contentIndex === 1 && (
+              <Compare
+                className="bg-primary"
+                setOpenIndex={setOpenIndex}
+                openIndex={openIndex}
+                handleToggle={handleToggle}
+                contentSwitch={contentSwitch}
+              />
+            )}
+            {contentIndex === 2 && (
+              <Search
+                className="bg-primary"
+                setOpenIndex={setOpenIndex}
+                openIndex={openIndex}
+                handleToggle={handleToggle}
+                contentSwitch={contentSwitch}
+              />
+            )}
+          </Col>
+        </Row>
+      </Section>
+    </Page>
   );
-};
-
-Main.propTypes = {
-  children: PropTypes.node.isRequired,
-  fluid: PropTypes.bool,
-  className: PropTypes.string,
 };
 
 export default Main;

@@ -73,7 +73,7 @@ const PillNavigation = ({
             >
               <Text
                 tagStyle="base"
-                className={`Pill font-light bebas-neue-regular p-12 ${pillIndex === index ? "box-border-active" : "box-border"} br-8 ${
+                className={`Pill Button font-light bebas-neue-regular p-12 ${pillIndex === index ? "box-border-active" : "box-border"} br-8 ${
                   index === 1 ? "mx-md-y-x" : ""
                 }`}
               >
@@ -177,6 +177,11 @@ const PillNavigation = ({
 
 PillNavigation.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.node,
+  findPlayerById: PropTypes.func,
+  handleToggle: PropTypes.func,
+  setOpenIndex: PropTypes.func,
+  openIndex: PropTypes.number,
 };
 
 PillNavigation.defaultProps = {
