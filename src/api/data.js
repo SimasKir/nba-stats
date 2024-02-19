@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import PLAYERS from "../constants/players-info";
-import { store } from "../redux/store";
-import { set } from "../redux/actions";
 
 export default function Data() {
   const [players, setPlayers] = useState([]);
@@ -23,7 +21,6 @@ export default function Data() {
         console.error("Error fetching data:", error);
       }
     };
-    store.dispatch(set());
     fetchPlayers();
   }, []);
 

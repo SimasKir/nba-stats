@@ -4,13 +4,13 @@ import cx from "classnames";
 import giannisImage from "../../assets/Giannis.jpg";
 import nicolaImage from "../../assets/Nicola.jpg";
 import shaiImage from "../../assets/Shai.jpeg";
-import joelImage from "../../assets/Joel.jpg";
+// import joelImage from "../../assets/Joel.jpg";
 import lucaImage from "../../assets/Luca.jpg";
 import tatumImage from "../../assets/Tatum.jpg";
 
 const Image = ({ className, openIndex, ...props }) => {
   const classes = cx(
-    "Image-container relative column-width-40 overflow-hidden image-mid max-height-100",
+    "Image-container relative overflow-hidden image-mid h-100",
     className,
   );
 
@@ -36,7 +36,7 @@ const Image = ({ className, openIndex, ...props }) => {
   return (
     <div className={classes} {...props}>
       <img
-        className="grayscale"
+        className="grayscale h-100"
         src={getImage(openIndex)}
         alt={`Nba player - ${openIndex}`}
       />

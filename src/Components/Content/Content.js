@@ -9,18 +9,19 @@ import Button from "../Button/Button";
 const Content = ({
   className,
   handleToggle,
-  handleCompare,
+  contentSwitch,
   openIndex,
   setOpenIndex,
-  items,
-  names,
   ...props
 }) => {
-  const classes = cx("Content column-width-md-60", className);
+  const classes = cx("Content h-100", className);
 
-  const handleCompareAndSetID = () => {
-    handleCompare();
-    setOpenIndex(145);
+  const contentSwitchToCompare = () => {
+    contentSwitch(1);
+    setOpenIndex(246);
+  };
+  const contentSwitchToSearch = () => {
+    contentSwitch(2);
   };
 
   return (
@@ -32,14 +33,12 @@ const Content = ({
         <img height="50px" className="mr-12" src={logo} alt="nba logo" />
         MVP Race
       </Title>
-      <Accordion
-        items={items}
-        names={names}
-        handleToggle={handleToggle}
-        openIndex={openIndex}
-      />
-      <Button handleCompare={handleCompareAndSetID} className="mt-24">
+      <Accordion handleToggle={handleToggle} openIndex={openIndex} />
+      <Button contentSwitch={contentSwitchToCompare} className="mt-24">
         Compare Stats
+      </Button>
+      <Button contentSwitch={contentSwitchToSearch} className="mt-24">
+        Search for player
       </Button>
     </div>
   );
@@ -47,6 +46,10 @@ const Content = ({
 
 Content.propTypes = {
   className: PropTypes.string,
+  handleToggle: PropTypes.func,
+  contentSwitch: PropTypes.func,
+  openIndex: PropTypes.number,
+  setOpenIndex: PropTypes.func,
 };
 
 Content.defaultProps = {

@@ -5,7 +5,6 @@
 @import './styles/spacing.scss';
 @import './styles/basics.scss';
 
-@import './Components/Grid/grid.scss';
 @import './Components/Content/content.scss';
 @import './Components//Image/image.scss';
 @import './Components/Text/text.scss';
@@ -13,6 +12,10 @@
 @import './Components/PillNavigation/pillnavigation.scss';
 @import './Components/Button/button.scss';
 @import './Components/Accordion/accordion.scss';
+@import './Components/Page/page.scss';
+@import './Components/Row/row.scss';
+@import './Components/Col/Col.scss';
+@import './Components/Form/form.scss';
 
 
 :root {
@@ -34,6 +37,14 @@ body {
   width: 100%;
 }
 
+.w-30 {
+  width: 30%;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
 .h-100 {
   height: 100%;
 }
@@ -53,9 +64,18 @@ body {
   box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.6); 
 }
 
+.border-none {
+  border: 0;
+}
+
 .border-bottom {
   border-radius: 1px;
   border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.border-top {
+  border-radius: 1px;
+  border-top: 1px solid rgba(255,255,255,0.3);
 }
 
 .border-left {
@@ -89,6 +109,10 @@ body {
 
 .justify-content-center {
   justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
 }
 
 .align-center {
