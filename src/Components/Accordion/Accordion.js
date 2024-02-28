@@ -14,17 +14,7 @@ const AccordionItem = ({ stat, name, isOpen, onToggle, index }) => {
           {name.first_name + " " + name.last_name}
         </Text>
       </div>
-      <div
-        className="box-border br-8"
-        style={{
-          padding: "10px",
-          height: "15px",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <div className="box-border br-8 p-10 flex flex-row align-center justify-content-between h-15px">
         <Text
           className="m-0 bebas-neue-regular font-light"
           text={index + 1 + "."}

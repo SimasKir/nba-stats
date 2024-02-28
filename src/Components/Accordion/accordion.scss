@@ -11,6 +11,7 @@
 
     & .lead {
         font-size: $font-size-base;
+        margin: 0;
 
         @include responsive-breakpoints($breakpoint-small) {
             font-size: $font-size-big;

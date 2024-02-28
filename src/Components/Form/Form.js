@@ -12,6 +12,8 @@ import Text from "../Text/Text";
 import Button from "../Button/Button";
 import Stats from "../Stats/Stats";
 import Row from "../Row/Row";
+import Carousel from "../Carousel/Carousel";
+import findPlayerById from "../../functions/findPlayerById";
 
 const MyForm = () => {
   const [formData, setFormData] = useState({
@@ -96,26 +98,21 @@ const MyForm = () => {
     setShowCompare(sortedPlayersStatsArray);
   };
 
-  const findPlayerById = (id, playersArray) => {
-    const player = playersArray.find((player) => player.id === id);
-    return `${player.first_name} ${player.last_name}`;
-  };
-
   return (
     <form onSubmit={handleSubmit} className="Form flex-column">
       {playerInfo && playerStats ? (
-        <Text className="bebas-neue-regular font-light flex justify-content-center pb-10">
+        <Text className="bebas-neue-regular font-light flex justify-content-center pb-10 pt-md-24">
           Check stats bellow!
         </Text>
       ) : (
-        <Text className="bebas-neue-regular font-light flex justify-content-center pb-10">
+        <Text className="bebas-neue-regular font-light flex justify-content-center pb-10 pt-md-24">
           Please enter correct name and last name
         </Text>
       )}
       <Row justify="between" className="py-10 pb-0 border-top">
         <label
           htmlFor="name"
-          className="bebas-neue-regular font-light flex align-center"
+          className="bebas-neue-regular font-light flex align-center base"
         >
           Name:
         </label>
@@ -123,7 +120,7 @@ const MyForm = () => {
           type="text"
           id="name"
           name="name"
-          className="box-border border-none bg-primary bebas-neue-regular font-light p-10"
+          className="box-border border-none bg-primary bebas-neue-regular font-light p-10 base"
           value={formData.name}
           onChange={handleChange}
         />
@@ -131,7 +128,7 @@ const MyForm = () => {
       <Row justify="between" className="py-10">
         <label
           htmlFor="lastName"
-          className="bebas-neue-regular font-light flex align-center"
+          className="bebas-neue-regular font-light flex align-center base"
         >
           Last name:
         </label>
@@ -139,15 +136,18 @@ const MyForm = () => {
           type="text"
           id="lastName"
           name="lastName"
-          className="box-border border-none bg-primary bebas-neue-regular font-light p-10"
+          className="box-border border-none bg-primary bebas-neue-regular font-light p-10 base"
           value={formData.lastName}
           onChange={handleChange}
         />
       </Row>
       <Row justify="center" className="py-10 border-bottom">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="mx-12">
+          Submit
+        </Button>
         {playerInfo && playerStats && (
           <Button
+            className="mx-12"
             type="button"
             onClick={(e) => {
               e.preventDefault();
@@ -169,7 +169,122 @@ const MyForm = () => {
         <Stats stats={playerStats} />
       )}
       {showCompare && (
-        <div className="flex flex-direction-row justify-content-between">
+        <Carousel
+          className="d-md-none-block"
+          items={[
+            <div className="w-100">
+              {showCompare.points.map((player, index) => {
+                return (
+                  <div
+                    className="flex flex-direction-row w-100 justify-content-between"
+                    key={index}
+                  >
+                    <div className="flex flex-direction-row">
+                      <Text
+                        tagStyle="small"
+                        className="m-0 bebas-neue-regular font-light"
+                        text={index + 1 + "."}
+                      />
+                      <Text
+                        tagStyle="small"
+                        className={cx(
+                          "m-0 bebas-neue-regular",
+                          player.player_id === playerStats.player_id
+                            ? "font-highlight"
+                            : "font-light",
+                        )}
+                        text={findPlayerById(
+                          player.player_id,
+                          showCompare.players,
+                        )}
+                      />
+                    </div>
+                    <Text
+                      tagStyle="small"
+                      className="m-0 bebas-neue-regular font-light"
+                      text={player.pts}
+                    />
+                  </div>
+                );
+              })}
+            </div>,
+            <div className="w-100">
+              {showCompare.assists.map((player, index) => {
+                return (
+                  <div
+                    className="flex flex-direction-row w-100 justify-content-between"
+                    key={index}
+                  >
+                    <div className="flex flex-direction-row">
+                      <Text
+                        tagStyle="small"
+                        className="m-0 bebas-neue-regular font-light"
+                        text={index + 1 + "."}
+                      />
+                      <Text
+                        tagStyle="small"
+                        className={cx(
+                          "m-0 bebas-neue-regular",
+                          player.player_id === playerStats.player_id
+                            ? "font-highlight"
+                            : "font-light",
+                        )}
+                        text={findPlayerById(
+                          player.player_id,
+                          showCompare.players,
+                        )}
+                      />
+                    </div>
+                    <Text
+                      tagStyle="small"
+                      className="m-0 bebas-neue-regular font-light"
+                      text={player.ast}
+                    />
+                  </div>
+                );
+              })}
+            </div>,
+            <div className="w-100">
+              {showCompare.rebounds.map((player, index) => {
+                return (
+                  <div
+                    className="flex flex-direction-row w-100 justify-content-between"
+                    key={index}
+                  >
+                    <div className="flex flex-direction-row">
+                      <Text
+                        tagStyle="small"
+                        className="m-0 bebas-neue-regular font-light"
+                        text={index + 1 + "."}
+                      />
+                      <Text
+                        tagStyle="small"
+                        className={cx(
+                          "m-0 bebas-neue-regular",
+                          player.player_id === playerStats.player_id
+                            ? "font-highlight"
+                            : "font-light",
+                        )}
+                        text={findPlayerById(
+                          player.player_id,
+                          showCompare.players,
+                        )}
+                      />
+                    </div>
+                    <Text
+                      tagStyle="small"
+                      className="m-0 bebas-neue-regular font-light"
+                      text={player.reb}
+                    />
+                  </div>
+                );
+              })}
+            </div>,
+          ]}
+        />
+      )}
+      {showCompare && (
+        <div className="flex-direction-row justify-content-between mt-24 d-md-flex-none">
           <div className="w-30">
             <Text
               tagStyle="base"
@@ -179,7 +294,10 @@ const MyForm = () => {
             </Text>
             {showCompare.points.map((player, index) => {
               return (
-                <div className="flex flex-direction-row w-100 justify-content-between">
+                <div
+                  className="flex flex-direction-row w-100 justify-content-between"
+                  key={index}
+                >
                   <div className="flex flex-direction-row">
                     <Text
                       tagStyle="small"
@@ -209,7 +327,7 @@ const MyForm = () => {
               );
             })}
           </div>
-          <div className="w-30 border-x">
+          <div className="w-30">
             <Text
               tagStyle="base"
               className="bebas-neue-regular font-light py-10"
@@ -218,7 +336,10 @@ const MyForm = () => {
             </Text>
             {showCompare.assists.map((player, index) => {
               return (
-                <div className="flex flex-direction-row w-100 justify-content-between">
+                <div
+                  className="flex flex-direction-row w-100 justify-content-between"
+                  key={index}
+                >
                   <div className="flex flex-direction-row">
                     <Text
                       tagStyle="small"
@@ -257,7 +378,10 @@ const MyForm = () => {
             </Text>
             {showCompare.rebounds.map((player, index) => {
               return (
-                <div className="flex flex-direction-row w-100 justify-content-between">
+                <div
+                  className="flex flex-direction-row w-100 justify-content-between"
+                  key={index}
+                >
                   <div className="flex flex-direction-row">
                     <Text
                       tagStyle="small"

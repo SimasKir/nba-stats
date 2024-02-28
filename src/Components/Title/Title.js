@@ -20,7 +20,7 @@ const COMPONENT_CLASSES = ["h1", "h2", "h3", "h4", "h5", "h6"];
 const Title = ({ text, tag, tagStyle, children, className }) => {
   const TitleTag = COMPONENT_CLASSES.includes(tag) ? tag : "h1";
   const tagStyleClass = MODES.includes(tagStyle) ? tagStyle : "";
-  const titleClass = cx("Text", tagStyleClass, className);
+  const titleClass = cx("Text m-0", tagStyleClass, className);
 
   return <TitleTag className={titleClass}>{children || text}</TitleTag>;
 };

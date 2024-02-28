@@ -5,6 +5,7 @@ import Title from "../Title/Title";
 import Accordion from "../Accordion/AccordionGroup";
 import logo from "../../assets/SVG-nba-logo.svg";
 import Button from "../Button/Button";
+import Row from "../Row/Row";
 
 const Content = ({
   className,
@@ -27,19 +28,26 @@ const Content = ({
   return (
     <div className={classes} {...props}>
       <Title
-        className="bebas-neue-regular lead underline font-light flex flex-direction-row align-center"
+        className="bebas-neue-regular lead underline font-light flex flex-direction-row align-center pt-md-24 pb-24"
         tagStyle="h1"
       >
         <img height="50px" className="mr-12" src={logo} alt="nba logo" />
         MVP Race
       </Title>
       <Accordion handleToggle={handleToggle} openIndex={openIndex} />
-      <Button contentSwitch={contentSwitchToCompare} className="mt-24">
-        Compare Stats
-      </Button>
-      <Button contentSwitch={contentSwitchToSearch} className="mt-24">
-        Search for player
-      </Button>
+      <Row justify="center" className="pb-md-24 bg-primary">
+        <div className="flex flex-row">
+          <Button
+            contentSwitch={contentSwitchToCompare}
+            className="mt-24 mx-12"
+          >
+            Compare Stats
+          </Button>
+          <Button contentSwitch={contentSwitchToSearch} className="mt-24 mx-12">
+            Search for player
+          </Button>
+        </div>
+      </Row>
     </div>
   );
 };

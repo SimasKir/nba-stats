@@ -1,5 +1,9 @@
 .Form {
-    min-width: 750px;
+    width: 350px;
+
+    @include responsive-breakpoints($breakpoint-small) {
+        width: 600px;
+    }
 
     & input { 
         width: 200px;

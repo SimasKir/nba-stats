@@ -12,7 +12,7 @@ const AVAILABLE_JUSTIFY_VALUES = [
 
 const Row = ({ children, className, flex, justify, ...props }) => {
   const classes = cx(
-    "row h-100 w-100",
+    "row w-100",
     {
       row__flex: flex || justify,
       [`row--justify-${justify}`]: !!justify,

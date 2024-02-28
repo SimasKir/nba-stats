@@ -1,7 +1,13 @@
 const FetchPlayerData = async (name, lastName) => {
+  const headers = {
+    Authorization: process.env.REACT_APP_API_KEY,
+  };
   try {
     const response = await fetch(
-      `https://www.balldontlie.io/api/v1/players?per_page=100&search=${name} ${lastName}`,
+      `https://api.balldontlie.io/v1/players/?search=${lastName}&first_name=${name}`,
+      {
+        headers,
+      },
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");

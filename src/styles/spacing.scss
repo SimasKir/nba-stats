@@ -18,6 +18,10 @@
     padding-bottom: 10px;
 }
 
+.pb-24 {
+    padding-bottom: 24px;
+}
+
 .p-12 {
     padding: 12px;
 }
@@ -73,6 +77,22 @@
 .px-12 {
     padding-left: 12px;
     padding-right: 12px;
+}
+
+.pt-md-24 {
+    padding-top: 24px;
+
+    @include responsive-breakpoints($breakpoint-medium) {
+        padding-top: 0;
+    }
+}
+
+.pb-md-24 {
+    padding-bottom: 24px;
+
+    @include responsive-breakpoints($breakpoint-medium) {
+        padding-bottom: 0;
+    }
 }
 
 .mt-negative-20 {
