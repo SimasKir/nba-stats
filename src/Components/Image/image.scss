@@ -16,6 +16,7 @@
 
   .image-rotated {
     transform: rotate(180deg);
+    transition: 0.4s ease-in-out;
   }
 
   .grayscale {

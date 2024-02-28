@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import Text from "../Text/Text";
 import { store } from "../../redux/store";
+import List from "../List/List";
 
 const PillNavigation = ({
   children,
   className,
-  findPlayerById,
   handleToggle,
   setOpenIndex,
   openIndex,
@@ -17,6 +17,7 @@ const PillNavigation = ({
   const [pillIndex, setPillIndex] = useState(0);
 
   const statsData = store.getState().data.stats;
+  const playersData = store.getState().data.players;
 
   const assistsArray = statsData.map(({ player_id, ast }) => ({
     player_id,
@@ -34,7 +35,7 @@ const PillNavigation = ({
   const sortedPointsArray = pointsArray.sort((a, b) => b.pts - a.pts);
   const sortedReboundsArray = reboundsArray.sort((a, b) => b.reb - a.reb);
 
-  const test = [
+  const statsMapArray = [
     {
       name: "Points",
       index: 0,
@@ -65,7 +66,7 @@ const PillNavigation = ({
   return (
     <div className={classes} {...props}>
       <div className="Navigation flex flex-direction-column-row align-center box-border p-12 br-8 mb-24">
-        {test.map((item, index) => {
+        {statsMapArray.map((item, index) => {
           return (
             <div
               key={index}
@@ -89,26 +90,15 @@ const PillNavigation = ({
         >
           {sortedPointsArray.map((item, index) => {
             return (
-              <div
-                key={item.player_id}
-                className="flex flex-direction-row justify-between mb-12 border-bottom py-12"
-              >
-                <div className="flex flex-direction-row">
-                  <Text
-                    tagStyle="base"
-                    className="m-0 bebas-neue-regular font-light mr-12"
-                    text={index + 1 + "."}
-                  />
-                  <Text
-                    tagStyle="base"
-                    className="font-light bebas-neue-regular mr-12"
-                    text={findPlayerById(item.player_id)}
-                  />
-                </div>
-                <Text tagStyle="base" className="font-light grape-nuts-regular">
-                  {item.pts}
-                </Text>
-              </div>
+              playersData && (
+                <List
+                  item={item}
+                  players={playersData}
+                  index={index}
+                  key={index}
+                  stat="pts"
+                />
+              )
             );
           })}
         </div>
@@ -118,26 +108,15 @@ const PillNavigation = ({
         >
           {sortedAssistsArray.map((item, index) => {
             return (
-              <div
-                key={item.player_id}
-                className="flex flex-direction-row justify-between mb-12 border-bottom py-12"
-              >
-                <div className="flex flex-direction-row">
-                  <Text
-                    tagStyle="base"
-                    className="m-0 bebas-neue-regular font-light mr-12"
-                    text={index + 1 + "."}
-                  />
-                  <Text
-                    tagStyle="base"
-                    className="font-light bebas-neue-regular mr-12"
-                    text={findPlayerById(item.player_id)}
-                  />
-                </div>
-                <Text tagStyle="base" className="font-light grape-nuts-regular">
-                  {item.ast}
-                </Text>
-              </div>
+              playersData && (
+                <List
+                  item={item}
+                  players={playersData}
+                  index={index}
+                  key={index}
+                  stat="ast"
+                />
+              )
             );
           })}
         </div>
@@ -147,26 +126,15 @@ const PillNavigation = ({
         >
           {sortedReboundsArray.map((item, index) => {
             return (
-              <div
-                key={item.player_id}
-                className="flex flex-direction-row justify-between mb-12 border-bottom py-12"
-              >
-                <div className="flex flex-direction-row">
-                  <Text
-                    tagStyle="base"
-                    className="m-0 bebas-neue-regular font-light mr-12"
-                    text={index + 1 + "."}
-                  />
-                  <Text
-                    tagStyle="base"
-                    className="font-light bebas-neue-regular mr-12"
-                    text={findPlayerById(item.player_id)}
-                  />
-                </div>
-                <Text tagStyle="base" className="font-light grape-nuts-regular">
-                  {item.reb}
-                </Text>
-              </div>
+              playersData && (
+                <List
+                  item={item}
+                  players={playersData}
+                  index={index}
+                  key={index}
+                  stat="reb"
+                />
+              )
             );
           })}
         </div>
@@ -178,7 +146,6 @@ const PillNavigation = ({
 PillNavigation.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  findPlayerById: PropTypes.func,
   handleToggle: PropTypes.func,
   setOpenIndex: PropTypes.func,
   openIndex: PropTypes.number,

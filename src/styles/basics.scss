@@ -2,6 +2,22 @@
     display: none !important;
 }
 
+.d-md-flex-none {
+    display: none;
+
+    @include responsive-breakpoints($breakpoint-small) {
+        display: flex;
+    }
+}
+
+.d-md-none-block {
+    display: block;
+
+    @include responsive-breakpoints($breakpoint-small) {
+        display: none;
+    }
+}
+
 .d-block {
     display: block;
 }

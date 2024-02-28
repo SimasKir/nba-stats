@@ -8,16 +8,16 @@ import { store } from "../redux/store";
 import Content from "./Content/Content";
 import Search from "./Search/Search";
 import Image from "./Image/Image";
-import Stats from "../api/statsData";
-import Data from "../api/data";
+import FetchPlayersStats from "../api/fetchPlayersStats";
+import FetchPlayersData from "../api/FetchPlayersData";
 import Compare from "./Comparison/Compare";
 import { set } from "../redux/actions";
 
 const Main = () => {
   const [contentIndex, setContentIndex] = useState(0);
 
-  const { players } = Data();
-  const { stats } = Stats();
+  const { players } = FetchPlayersData();
+  const { stats } = FetchPlayersStats();
 
   store.dispatch(set({ players: players, stats: stats, newPlayer: null }));
 
@@ -34,7 +34,7 @@ const Main = () => {
   return (
     <Page>
       <Section className="vh-100">
-        <Row flex>
+        <Row flex className="h-100">
           <Col width={contentIndex === 2 ? 0 : 40}>
             <Image openIndex={openIndex} />
           </Col>

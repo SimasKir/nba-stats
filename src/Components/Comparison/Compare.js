@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import Button from "../Button/Button";
 import PillNavigation from "../PillNavigation/PillNavigation";
-import { store } from "../../redux/store";
+import Row from "../Row/Row";
 
 const Compare = ({
   className,
@@ -13,14 +13,7 @@ const Compare = ({
   setOpenIndex,
   ...props
 }) => {
-  const classes = cx("Content h-100", className);
-
-  const playersData = store.getState().data.players;
-
-  const findPlayerById = (id) => {
-    const player = playersData.find((name) => name.id === id);
-    return `${player.first_name} ${player.last_name}`;
-  };
+  const classes = cx("Compare h-100", className);
 
   const compareSwitchToContent = () => {
     contentSwitch(0);
@@ -30,19 +23,29 @@ const Compare = ({
   };
 
   return (
-    <div className={cx("flex-column", classes)} {...props}>
+    <div
+      className={cx("flex-column align-center justify-content-center", classes)}
+      {...props}
+    >
       <PillNavigation
+        className="pt-md-24"
         setOpenIndex={setOpenIndex}
         openIndex={openIndex}
         handleToggle={handleToggle}
-        findPlayerById={findPlayerById}
       />
-      <Button contentSwitch={compareSwitchToContent} className="mt-24">
-        Back to Race
-      </Button>
-      <Button contentSwitch={compareSwitchToSearch} className="mt-24">
-        Search for player
-      </Button>
+      <Row justify="center" className="h-auto pb-md-24 bg-primary">
+        <div className="flex flex-row">
+          <Button
+            contentSwitch={compareSwitchToContent}
+            className="mt-24 mx-12"
+          >
+            Back to Race
+          </Button>
+          <Button contentSwitch={compareSwitchToSearch} className="mt-24 mx-12">
+            Search for player
+          </Button>
+        </div>
+      </Row>
     </div>
   );
 };

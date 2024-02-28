@@ -6,7 +6,7 @@ const COLUMN_SIZES = [0, 40, 60, 100];
 
 const Col = ({ children, className, width, ...props }) => {
   return (
-    <div className={cx("col", `h-100 col-${width}`, className)} {...props}>
+    <div className={cx("col h-100", `col-${width}`, className)} {...props}>
       {children}
     </div>
   );
