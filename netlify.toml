@@ -1,4 +1,3 @@
 [build]
   publish = "build"
   command = "yarn build"
-  CI= npm run build
